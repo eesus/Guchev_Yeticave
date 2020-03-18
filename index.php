@@ -52,24 +52,26 @@ $goods = [
         'url' => 'img/lot-6.jpg',
         'description' => 'Маска для сноуборда'
     ],
-]
-?>
+];
 
-<?php
-function getPrice($priceValue)
-{
-    $intPart = ceil($priceValue);
-    $stringRepresentation = (string) $intPart;
-    if ($intPart < 1000) {
-        $fullPrice = $stringRepresentation . ' ₽';
-        return $fullPrice;
-    } elseif ($intPart > 1000){
-        $begingPart = substr($stringRepresentation, 0, -3);
-        $endPart = substr($stringRepresentation, -3, 3);
-        $fullPrice = $begingPart . ' ' . $endPart . ' ₽';
-        return $fullPrice;
+function fun($sum, $rub = true){
+    $sum = ceil($sum);
+
+    if ($sum >= 1000){
+        $price = number_format($sum, 0, '.', ' ');
+    }
+    else{
+        $price = $sum;
+    }
+
+    if ($rub){
+        return $price."<b class=\"rub\">р</b>";
+    }
+    else{
+        return $price;
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -144,7 +146,7 @@ function getPrice($priceValue)
                         <div class="lot__state">
                             <div class="lot__rate">
                                 <span class="lot__amount">Стартовая цена</span>
-                                <span class="lot__cost"><?php echo getPrice($value['price']); ?></span>
+                                <span class="lot__cost"><?php echo fun($value['price']); ?></span>
                             </div>
                             <div class="lot__timer timer">
                                 12:23
