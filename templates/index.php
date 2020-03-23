@@ -26,7 +26,8 @@
                         <span class="lot__cost"><?= fun($val['price'], true)?></span>
                     </div>
                     <div class="lot__timer timer">
-                        12:23
+                        <?=
+                        count_time();?>
                     </div>
                 </div>
             </div>

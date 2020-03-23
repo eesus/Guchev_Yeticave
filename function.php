@@ -92,4 +92,11 @@ function fun($sum, $rub = true)
     }
 }
 
-
+function count_time(){
+    $dateNow = strtotime("now");
+    $dateTomorrow = strtotime("tomorrow");
+    $diff = $dateTomorrow - $dateNow;
+    $remain_hours = floor($diff/(3600));
+    $remain_min = floor(($diff-$remain_hours*(3600))/(60));
+    return "$remain_hours:$remain_min";
+}
